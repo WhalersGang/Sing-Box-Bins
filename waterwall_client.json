@@ -1,0 +1,44 @@
+{
+    "name": "tls_port_to_port_grpc_iran",
+    "nodes": [
+        {
+            "name": "input",
+            "type": "TcpListener",
+            "settings": {
+                "address": "0.0.0.0",
+                "port": INPUT_PORT,
+                "nodelay": true
+            },
+            "next": "h2client"
+        },
+        {
+            "name": "h2client",
+            "type": "Http2Client",
+            "settings": {
+                "host": "DOMAIN",
+                "port": H2_PORT,
+                "path": "/"
+            },
+            "next": "sslclient"
+        },
+        {
+            "name": "sslclient",
+            "type": "OpenSSLClient",
+            "settings": {
+                "sni": "DOMAIN",
+                "verify": true,
+                "alpn": "h2"
+            },
+            "next": "output"
+        },
+        {
+            "name": "output",
+            "type": "TcpConnector",
+            "settings": {
+                "nodelay": true,
+                "address": "DOMAIN",
+                "port": TCP_PORT
+            }
+        }
+    ]
+}
