@@ -1,0 +1,30 @@
+{
+    "log": {
+        "path": "log/",
+        "core": {
+            "loglevel": "DEBUG",
+            "file": "core.log",
+            "console": true
+        },
+        "network": {
+            "loglevel": "DEBUG",
+            "file": "network.log",
+            "console": true
+
+        },
+        "dns": {
+            "loglevel": "SILENT",
+            "file": "dns.log",
+            "console": false
+
+        }
+    },
+    "dns": {},
+    "misc": {
+        "threads": 0,
+        "libs-path": "libs/"
+    },
+    "configs": [
+        "/root/waterwall/config.json"
+    ]
+}
